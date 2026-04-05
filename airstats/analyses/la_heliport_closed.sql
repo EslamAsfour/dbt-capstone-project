@@ -1,0 +1,8 @@
+WITH CLOSED_AIRPORTS AS
+(
+    SELECT  *
+    FROM  {{ ref('scd_silver_airports' )}}
+    WHERE AIRPORT_IDENT = '01CN'
+)
+
+SELECT * FROM CLOSED_AIRPORTS

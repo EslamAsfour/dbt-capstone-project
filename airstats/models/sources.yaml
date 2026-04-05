@@ -1,0 +1,15 @@
+sources:
+  - name: airstats
+    schema: raw
+    tables: 
+      - name: AIRPORTS
+        identifier: AIRPORTS
+        description: Global airport registry, roughly 72,000 records.
+
+      - name: COMMENTS
+        identifier: AIRPORT_COMMENTS
+        description: User-submitted comments about airports from OurAirports.com. Row count varies.
+
+      - name: RUNAWAYS
+        identifier: RUNAWAYS
+        description: Physical runway data for airports, roughly 44,000 records. Each row describes one runway direction pair. The le_ prefix stands for low end and he_ for high end of the runway.

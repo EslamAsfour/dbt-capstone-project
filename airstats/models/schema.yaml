@@ -1,0 +1,71 @@
+models:
+  - name: silver_airports
+    columns:
+     - name: AIRPORT_IDENT
+       description: '{{ doc("airport_ident_desc") }}'
+       data_tests:
+         - unique
+         - not_null
+     - name: AIRPORT_TYPE
+       data_tests:
+         - not_null
+         - accepted_values:
+             arguments:
+               values: ['heliport',
+                        'closed',
+                        'small_airport',
+                        'seaplane_base',
+                        'large_airport',
+                        'balloonport',
+                        'medium_airport'
+                        ]
+     - name: ISO_COUNTRY
+       data_tests:
+         - not_null
+     - name: CONTINENT
+       data_tests:
+         - not_null
+         - accepted_values:
+             arguments:
+               values: ['AN',
+                        'EU',
+                        'AS',
+                        'OC',
+                        'AF',
+                        'SA',
+                        'NA']
+  - name: silver_runways
+    columns:
+     - name: RUNWAY_ID
+       data_tests:
+         - unique
+         - not_null
+     - name: AIRPORT_IDENT
+       data_tests:
+         - not_null
+         - relationships:
+             arguments:
+               to: ref('silver_airports')
+               field: AIRPORT_IDENT         
+     - name: RUNWAY_SURFACE
+       data_tests:
+         - not_null
+     - name: RUNWAY_CLOSED
+       data_tests:
+         - not_null
+         - accepted_values:
+             arguments:
+               values: ['1',
+                        '0']
+  - name: silver_airport_comments
+    columns:
+     - name: COMMENT_ID
+       data_tests:
+         - unique
+         - not_null
+     - name: AIRPORT_IDENT
+       data_tests:
+         - not_null
+
+
+         

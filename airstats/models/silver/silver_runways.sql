@@ -1,0 +1,17 @@
+WITH src_runways AS 
+(
+    SELECT 
+    *
+    FROM {{ ref('src_runways')}}
+)
+
+SELECT
+	RUNWAY_ID,
+	AIRPORT_IDENT,
+	RUNWAY_LENGTH_FT,
+	RUNWAY_WIDTH_FT,
+	IFNULL(RUNWAY_SURFACE , '__UNKNOWN__') AS RUNWAY_SURFACE,
+	RUNWAY_LIGHTED,
+	RUNWAY_CLOSED
+FROM
+src_runways
